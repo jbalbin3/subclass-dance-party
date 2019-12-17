@@ -1,22 +1,31 @@
 
-var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
-  // this = Object.create(makeBlinkyDancer.prototype)
+var makeWeirdDancer = function(top, left, timeBetweenSteps) {
+  // this = Object.create(makeWeirdDancer.prototype)
+  // make unique
   makeDancer.apply(this, arguments);
+  this.setPosition(top, left, (Math.random() * 100));
   // return this
 };
-makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
-makeBlinkyDancer.prototype.constructor = makeBlinkyDancer;
+makeWeirdDancer.prototype = Object.create(makeDancer.prototype);
+makeWeirdDancer.prototype.constructor = makeWeirdDancer;
 
-makeBlinkyDancer.prototype.step = function(time) {
-  // setTimeout(this.step.bind(this), time); // how do we use the makeDancer.step and bindMakeBlinkyDancer to it properly?
-  // console.log('function to call ', makeDancer.prototype.step);
-  Object.getPrototypeOf(makeBlinkyDancer.prototype).step.call(this, time);
-  // makeDancer.prototype.step.call(makeBlinkyDancer);
+makeWeirdDancer.prototype.step = function(time) {
+  Object.getPrototypeOf(makeWeirdDancer.prototype).step.call(this, time);
   this.$node.toggle();
 };
 
+makeWeirdDancer.prototype.setPosition = function(top, left, size) {
+  console.log('size', size);
+  var styleSettings = {
+    top: top,
+    left: left,
+    border: `${size}px solid blue`,
+    borderRadius: `${size}px`,
+  };
+  this.$node.css(styleSettings);
+}
 /*
-var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
+var makeWeirdDancer = function(top, left, timeBetweenSteps) {
   var blinkyDancer = makeDancer(top, left, timeBetweenSteps);
 
   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
