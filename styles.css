@@ -1,6 +1,9 @@
 body, html{
   height: 100%;
   overflow: hidden;
+  background: url("images/background-stage.jpg");
+  background-size: cover;
+  background-position: center;
 }
 body{
   margin: 0px;
@@ -14,9 +17,14 @@ body, a:link, a:visited, a:active{
   padding:5px 12px;
   float:right;
 }
+.inline-dancers {
+  padding: 5px 12px;
+  float: left;
+}
 .topbar{
   height:32px;
   background-color: #555;
+  z-index: 1;
 }
 .title{
   background-color: #777;
@@ -25,4 +33,14 @@ body, a:link, a:visited, a:active{
   border:10px solid red;
   border-radius:10px;
   position:absolute;
+  z-index: -1;
+}
+
+.motion:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.motion {
+  transition: all 2s ease;
 }

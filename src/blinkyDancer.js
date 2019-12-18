@@ -2,6 +2,8 @@
 var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
   // this = Object.create(makeBlinkyDancer.prototype)
   makeDancer.apply(this, arguments);
+  this.$node = $(`<img class="motion" src="images/drums.png" height="100" width="auto"></img>`);
+  this.setPosition(top, left, (Math.random() * 100));
   // return this
 };
 makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
@@ -12,7 +14,21 @@ makeBlinkyDancer.prototype.step = function(time) {
   // console.log('function to call ', makeDancer.prototype.step);
   Object.getPrototypeOf(makeBlinkyDancer.prototype).step.call(this, time);
   // makeDancer.prototype.step.call(makeBlinkyDancer);
-  this.$node.toggle();
+  // this.$node.toggle();
+  if (this.boolean) {
+    this.setPosition($("body").height() * Math.random() ,$("body").width() * Math.random());
+  }
+};
+
+makeBlinkyDancer.prototype.setPosition = function(top, left, size) {
+  var styleSettings = {
+    position: 'absolute',
+    top: top,
+    left: left,
+    border: `initial`,
+    borderRadius: `initial`,
+  };
+  this.$node.css(styleSettings);
 };
 
 /*

@@ -1,8 +1,11 @@
 // Creates and returns a new dancer object that can step
-var makeDancer = function(top, left, timeBetweenSteps) {
+var makeDancer = function(top, left, timeBetweenSteps, bVal=true) {
   // this = Object.create(makeDancer.prototype)
   // use jQuery to create an HTML <span> tag
   this.$node = $('<span class="dancer"></span>');
+  console.log('1 ', this);
+  this.boolean = bVal;
+  // invokation of functions
   this.step(timeBetweenSteps);
   this.setPosition(top, left);
   // return this
@@ -13,7 +16,13 @@ makeDancer.prototype.step = function(time) {
   // it just schedules the next step
   // console.log('inside step func ', this);
   // console.log('this.step ', this.prototype.step); // makeBlinkyDancer.step is undefined
-  setTimeout(this.step.bind(this, time), time);
+  // boolean = true;
+  // console.log('makeInsaneDancer this ', this); // makeInsaneDancer
+  // console.log('makeInsaneDancer boolean', this.boolean);
+  if(this.boolean) {
+    setTimeout(this.step.bind(this, time), time);
+  }
+
 };
 
 
@@ -22,6 +31,7 @@ makeDancer.prototype.setPosition = function(top, left) {
   // where it belongs on the page. See http://api.jquery.com/css/
   //
   var styleSettings = {
+    position: 'absolute',
     top: top,
     left: left
   };
